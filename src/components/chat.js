@@ -12,7 +12,6 @@ function Chat () {
 
   let socket = socketClient(SERVER);
     socket.on('TEST', () => {
-      console.log('I am connected TEST-------');
       socket.emit('add user', user);
     });
 
@@ -20,7 +19,6 @@ function Chat () {
       console.log('MESSAGES----', data);
       data.allMessages.forEach((chatMessage) => {
         chatMessages.push(chatMessage);
-        console.log('CHAT MESS---', chatMessage.username, chatMessage.User_Message);
       });
     });
 
