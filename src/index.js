@@ -8,7 +8,7 @@ function Entry() {
     <>
       <Auth0Provider
         domain="simoneodegard.us.auth0.com"
-        clientId="0urVRAetVyyupPCix7ONfM0bwxXD2FB5"
+        clientId="Lh9BfFJesXBWUnKOZYjuXsV5OcNOXnB3"
         redirectUri={window.location.origin}
       >
         <App />
