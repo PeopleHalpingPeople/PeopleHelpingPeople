@@ -41,7 +41,7 @@ export default function MenuAppBar() {
           <Typography variant="h6" className={classes.title}>
             People Helping People
           </Typography>
-          {/* <Logout /> */}
+          <Logout />
           <Login />
         </Toolbar>
       </AppBar>
