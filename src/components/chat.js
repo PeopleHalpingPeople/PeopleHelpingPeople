@@ -1,41 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './styles/style.css';
 const SERVER = 'http://localhost:3000';
 import socketClient from 'socket.io-client';
 import { useAuth0 } from "@auth0/auth0-react";
+import { filteredMessages } from '../store/messages.js';
+import { connect } from 'react-redux';
 
-function Chat () {
-  let chatMessages = [];
+function Chat (props) {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
 
   let socket = socketClient(SERVER);
-    socket.on('TEST', () => {
+    socket.on('connected', () => {
       socket.emit('add user', user);
     });
 
     socket.on('message list', (data) => {
-      console.log('MESSAGES----', data);
-      data.allMessages.forEach((chatMessage) => {
-        chatMessages.push(chatMessage);
-      });
+      props.filteredMessages(data);
     });
 
 
-  console.log('MESSAGES---', chatMessages);
-
-
-    
+  console.log('MESSAGES---', props.messageReducer.chatMessages.allMessages);
+  
+  let messageList = props.messageReducer.chatMessages.allMessages;
 
   return (
     <>
       <div id="chat-window">
         <p>Main Chat</p>
-        {/* <ul>
-          {chatMessages}
-        </ul> */}
-        {chatMessages.map(message => {
+        {messageList.map(message => {
           return (
             <li>{message.User_Message}</li>
           )
@@ -45,4 +39,12 @@ function Chat () {
   )
 }
 
-export default Chat;
+const mapStateToProps = state => ({
+  messageReducer: state.messageReducer
+});
+
+const mapDispatchToProps = (dispatch, getState) => ({
+  filteredMessages: (message) => dispatch(filteredMessages(message))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chat);
