@@ -1,6 +1,7 @@
 let initialState = {
-  chatMessages: [],
-  filteredChat: ''
+  chatMessages: {},
+  filteredChat: '',
+  newMessage: {}
 }
 
 // ====== REDUCER ====== \\
@@ -13,6 +14,10 @@ export default (state = initialState, action) => {
       let chatMessages = payload
       return {...state, chatMessages};
 
+    case 'NEW MESSAGE':
+      let input = payload
+      return {...state, input: newMessage}
+
     default:
       return state;
   }
@@ -24,5 +29,12 @@ export const filteredMessages = (message) => {
   return {
     type: 'FILTER',
     payload: message
+  }
+}
+
+export const newMessage = (input) => {
+  return {
+    type: 'NEW MESSAGE',
+    payload: input
   }
 }

@@ -5,6 +5,7 @@ import socketClient from 'socket.io-client';
 import { useAuth0 } from "@auth0/auth0-react";
 import { filteredMessages } from '../store/messages.js';
 import { connect } from 'react-redux';
+import { reduxForm, Field } from 'redux-form';
 
 function Chat (props) {
 
@@ -12,28 +13,49 @@ function Chat (props) {
   console.log(user);
 
   let socket = socketClient(SERVER);
-    socket.on('connected', () => {
-      socket.emit('add user', user);
+    socket.on('connect', () => {
+      socket.emit('add user', {username: [props.messageReducer.chatMessages.currentUser]});
     });
 
     socket.on('message list', (data) => {
       props.filteredMessages(data);
     });
 
+    socket.on('message', (data) => {
+      const { User_Message, username } = data;
+      socket.emit('chat message', data)
+      //TODO: import Regex conditionals
+      //TODO: emit private or global
+    });
 
-  console.log('MESSAGES---', props.messageReducer.chatMessages.allMessages);
+    const newMessage = () => {
+      socket.emit('message');
+    };
+
+
+  console.log('MESSAGES---', props.messageReducer.chatMessages);
   
   let messageList = props.messageReducer.chatMessages.allMessages;
 
   return (
     <>
       <div id="chat-window">
-        <p>Main Chat</p>
-        {messageList.map(message => {
+        {user ? 
+        <p>Welcome, {user.given_name}</p> : ''
+        }
+        {user && messageList ? messageList.map(message => {
+          console.log(message)
           return (
-            <li>{message.User_Message}</li>
+            <p>{message.username}: {message.User_Message}</p>
           )
-        })}
+        })
+        : null}
+        {user ?
+        <form onSubmit={newMessage}>
+          <input type="text"/>
+          <input type="submit" value="Send"/>
+        </form>
+        : null}
       </div>
     </>
   )
