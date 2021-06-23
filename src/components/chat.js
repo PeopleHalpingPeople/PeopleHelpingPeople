@@ -18,7 +18,7 @@ function Chat (props) {
   // useEffect(() => {
   //   setSocket(socketClient(SERVER));
   // }, []);
-    // let socket = socketClient(SERVER);
+    let socket = socketClient(SERVER);
   socket.on('connect', () => {
     socket.emit('add user', {username: [props.messageReducer.chatMessages.currentUser]});
   });
