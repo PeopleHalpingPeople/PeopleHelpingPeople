@@ -4,7 +4,7 @@ import socketIOClient from 'socket.io-client';
 import Chat from './chat.js';
 
 const SocketWrapper = (props) => {
-  const { user } = props.location.state;
+  // const { user } = props.location.state;
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const SocketWrapper = (props) => {
 
   return (
     <>
-      {socket ? <Chat socket={socket} user={user}/> : <span>Loading...</span>}
+      {socket ? <Chat socket={socket}/> : <span>Loading...</span>}
     </>
   );
 };
