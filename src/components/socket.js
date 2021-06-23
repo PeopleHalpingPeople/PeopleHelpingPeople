@@ -9,17 +9,18 @@ const SocketWrapper = (props) => {
   // const { user } = props.location.state;
   const [socket, setSocket] = useState(null);
 
-  useEffect(() => {
-    setSocket(socketIO);
+  // useEffect(() => {
+  //   setSocket(socketIO);
 
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     socket.disconnect();
+  //   };
+  // }, []);
 
   return (
     <>
-      {socket ? <Chat socket={socket}/> : <span>Loading...</span>}
+      {/* {socket ? <Chat socket={socket}/> : <span>Loading...</span>} */}
+      <Chat socket={setSocket(socketIO)}/>
     </>
   );
 };

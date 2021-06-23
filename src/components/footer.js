@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer () {
   return (
-    <p>(c) People Helping People</p>
+    <p id="footer">&copy; People Helping People</p>
   )
 }
 export default Footer;

@@ -1,7 +1,40 @@
+html {
+  background-image: radial-gradient(at top left, #7cbbbb, transparent),
+  radial-gradient(at top right, #dddbcb, transparent),
+  radial-gradient(at bottom left, #e9e6d7, transparent);
+}
+
 #chat-window {
   background-color: aquamarine;
   height: 400px;
   width: 400px;
   margin: 0 auto;
   border-radius: 10px;
+}
+
+#header {
+  font-family: 'Monoton', cursive;
+}
+
+
+#welcome {
+  font-family:'Oswald', sans-serif;
+}
+
+#chatbox {
+  font-family: 'Poppins', sans-serif;
+}
+
+#outlined-basic {
+  font-family: 'Poppins', sans-serif;
+}
+
+#sendbutton {
+  font-family: 'Poppins', sans-serif;
+}
+
+#footer {
+  font-family:'Oswald', sans-serif;
+  text-align: center;
+  margin-top: 50px;
 }

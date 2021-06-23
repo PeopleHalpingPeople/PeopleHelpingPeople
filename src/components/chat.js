@@ -7,20 +7,71 @@ import { filteredMessages } from '../store/messages.js';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import SocketWrapper from './socket';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import './styles/style.css';
 
-function Chat (props) {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: '0 auto',
+    marginTop: 20,
+    maxWidth: 800,
+    maxHeight: 400,
+    background: '#faf8f1',
+    borderWidth: 3,
+    borderColor: '#645853',
+    borderStyle: 'solid',
+  },
+  welcome: {
+    textAlign: 'center',
+    marginTop: 20,
+  },
+  chatbox: {
+    overflow: 'auto',
+    padding: 10,
+  },
+  input: {
+    textAlign: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  inputBox: {
+    width: 680,
+    background: '#faf8f1',
+    borderWidth: 1,
+    borderColor: '#645853',
+    borderStyle: 'solid',
+  },
+  button: {
+    width: 100,
+    paddingTop: 15,
+    paddingBottom: 15,
+    background: '#44392e',
+    color: '#faf8f1',
+  },
+}));
+
+function Chat(props) {
+  const classes = useStyles();
+
   // const [socket, setSocket] = useState({});
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
-  console.log(props);
+  console.log('PROPS ---', props);
 
   // useEffect(() => {
   //   setSocket(socketClient(SERVER));
   // }, []);
-    let socket = socketClient(SERVER);
+  let socket = socketClient(SERVER);
   socket.on('connect', () => {
-    socket.emit('add user', {username: [props.messageReducer.chatMessages.currentUser]});
+    socket.emit('add user', { username: [props.messageReducer.chatMessages.currentUser] });
   });
 
   socket.on('message list', (data) => {
@@ -42,29 +93,36 @@ function Chat (props) {
 
 
   console.log('MESSAGES---', props.messageReducer.chatMessages);
-  
+
   let messageList = props.messageReducer.chatMessages.allMessages;
 
   return (
     <>
-      <div id="chat-window">
-        {user ? 
-        <p>Welcome, {user.given_name}</p> : ''
-        }
-        {user && messageList ? messageList.map(message => {
-          console.log(message)
-          return (
-            <p>{message.username}: {message.User_Message}</p>
-          )
-        })
-        : null}
+      <h1 className={classes.welcome} id="welcome">
         {user ?
-        <form onSubmit={newMessage}>
-          <input type="text"/>
-          <input type="submit" value="Send"/>
-        </form>
-        : null}
-      </div>
+          <p>Welcome, {user.given_name}</p> : ''
+        }
+      </h1>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardContent>
+            <Typography className={classes.chatbox} id="chatbox" variant="body2" color="textSecondary" component="p">
+              {user && messageList ? messageList.map(message => {
+                console.log(message)
+                return (
+                  <p>{message.username}: {message.User_Message}</p>
+                )
+              })
+                : null}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      {user ?
+        <form className={classes.input} noValidate autoComplete="off" onSubmit={newMessage}>
+          <TextField className={classes.inputBox} id="outlined-basic" label="type message" variant="outlined" type="text" />
+          <Button className={classes.button} id="sendbutton" variant="contained" type="submit">Send</Button>
+        </form> : null}
     </>
   )
 }
