@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/style.css';
 const SERVER = 'http://localhost:3000';
 import socketClient from 'socket.io-client';
@@ -6,31 +6,38 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { filteredMessages } from '../store/messages.js';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
+import SocketWrapper from './socket';
 
 function Chat (props) {
+  // const [socket, setSocket] = useState({});
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
 
-  let socket = socketClient(SERVER);
-    socket.on('connect', () => {
-      socket.emit('add user', {username: [props.messageReducer.chatMessages.currentUser]});
-    });
+  // useEffect(() => {
+  //   setSocket(socketClient(SERVER));
+  // }, []);
+    // let socket = socketClient(SERVER);
+  socket.on('connect', () => {
+    socket.emit('add user', {username: [props.messageReducer.chatMessages.currentUser]});
+  });
 
-    socket.on('message list', (data) => {
-      props.filteredMessages(data);
-    });
+  socket.on('message list', (data) => {
+    props.filteredMessages(data);
+  });
 
-    socket.on('message', (data) => {
-      const { User_Message, username } = data;
-      socket.emit('chat message', data)
-      //TODO: import Regex conditionals
-      //TODO: emit private or global
-    });
+  socket.on('message', (data) => {
+    const { User_Message, username } = data;
+    socket.emit('chat message', data)
+    //TODO: import Regex conditionals
+    //TODO: emit private or global
+  });
 
-    const newMessage = () => {
-      socket.emit('message');
-    };
+  const newMessage = () => {
+    socket.emit('message');
+  };
+
+
 
 
   console.log('MESSAGES---', props.messageReducer.chatMessages);
