@@ -7,10 +7,9 @@ const socketIO = socketIOClient('http://localhost:3000');
 
 const SocketWrapper = (props) => {
   // const { user } = props.location.state;
-  const [socket, setSocket] = useState(null);
+  // const [socket, setSocket] = useState(null);
 
   // useEffect(() => {
-  //   setSocket(socketIO);
 
   //   return () => {
   //     socket.disconnect();
@@ -20,7 +19,7 @@ const SocketWrapper = (props) => {
   return (
     <>
       {/* {socket ? <Chat socket={socket}/> : <span>Loading...</span>} */}
-      <Chat socket={setSocket(socketIO)}/>
+      <Chat socket={socketIO}/>
     </>
   );
 };

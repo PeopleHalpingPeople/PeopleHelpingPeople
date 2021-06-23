@@ -5,6 +5,7 @@ import Chat from "./components/chat.js";
 import Howto from "./components/howto.js";
 import About from './components/about.js';
 import Footer from "./components/footer";
+import SocketWrapper from "./components/socket.js";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Chat />
+            <SocketWrapper />
           </Route>
           <Route exact path="/howto">
             <Howto />

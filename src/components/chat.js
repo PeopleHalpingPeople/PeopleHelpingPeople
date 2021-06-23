@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './styles/style.css';
-const SERVER = 'http://localhost:3000';
-import socketClient from 'socket.io-client';
+const HOST = 'http://localhost:3000';
+const { Socket } = require('socket.io-client');
+import io from 'socket.io-client';
 import { useAuth0 } from "@auth0/auth0-react";
 import { filteredMessages } from '../store/messages.js';
 import { connect } from 'react-redux';
@@ -61,15 +62,22 @@ function Chat(props) {
   const classes = useStyles();
 
   // const [socket, setSocket] = useState({});
+  const [messageText, setMessageText] = useState('hi');
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
   console.log('PROPS ---', props);
-
+  const { socket } = props;
   // useEffect(() => {
-  //   setSocket(socketClient(SERVER));
+  //   setSocket(io(HOST));
   // }, []);
-  let socket = socketClient(SERVER);
+  // let socket = io.connect(HOST);
+  useEffect(() => {
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
   socket.on('connect', () => {
     socket.emit('add user', { username: [props.messageReducer.chatMessages.currentUser] });
   });
@@ -81,6 +89,7 @@ function Chat(props) {
   socket.on('message', (data) => {
     const { User_Message, username } = data;
     socket.emit('chat message', data)
+    console.log('DATA---', data);
     //TODO: import Regex conditionals
     //TODO: emit private or global
   });
@@ -91,10 +100,14 @@ function Chat(props) {
 
 
 
-
+  console.log('EVENT TEXT', {messageText});
   console.log('MESSAGES---', props.messageReducer.chatMessages);
 
   let messageList = props.messageReducer.chatMessages.allMessages;
+
+  const handleSubmit = event => {
+    setMessageText({...messageText, messageText: event.target.value})
+  }
 
   return (
     <>
@@ -106,7 +119,7 @@ function Chat(props) {
       <Card className={classes.root}>
         <CardActionArea>
           <CardContent>
-            <Typography className={classes.chatbox} id="chatbox" variant="body2" color="textSecondary" component="p">
+            <Typography className={classes.chatbox} id="chatbox" variant="body2" color="textSecondary" component="span">
               {user && messageList ? messageList.map(message => {
                 console.log(message)
                 return (
@@ -119,7 +132,7 @@ function Chat(props) {
         </CardActionArea>
       </Card>
       {user ?
-        <form className={classes.input} noValidate autoComplete="off" onSubmit={newMessage}>
+        <form className={classes.input} noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField className={classes.inputBox} id="outlined-basic" label="type message" variant="outlined" type="text" />
           <Button className={classes.button} id="sendbutton" variant="contained" type="submit">Send</Button>
         </form> : null}
