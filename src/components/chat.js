@@ -13,6 +13,7 @@ function Chat (props) {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   console.log(user);
+  console.log(props);
 
   // useEffect(() => {
   //   setSocket(socketClient(SERVER));
