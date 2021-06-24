@@ -62,9 +62,10 @@ function Chat(props) {
 
   // const [socket, setSocket] = useState({});
   const [messageText, setMessageText] = useState('');
+  let messageList = props.messageReducer.chatMessages.allMessages;
 
   const { user, isAuthenticated, isLoading } = useAuth0();
-  console.log(user);
+  // console.log(user);
   const { socket } = props;
   // useEffect(() => {
   //   setSocket(io(HOST));
@@ -78,6 +79,11 @@ function Chat(props) {
 
   useEffect(() => {
     if (user) {
+      //TODO - logic to only print once. messageList is array
+      // console.log('messageList', {messageList});
+      // let list = [];
+      // list = Object.values(messageList);
+      // console.log('LIST', list);
       socket.emit('add user', user.given_name );
     }
   }, [user]);
@@ -90,14 +96,25 @@ function Chat(props) {
     props.filteredMessages(data);
   });
 
-  socket.on('message', (data) => {
-    const { User_Message, username } = data;
-    // socket.emit('chat message', data)
-    // console.log('DATA---', data);
-    props.newMessage(data);
-    //TODO: import Regex conditionals
-    //TODO: emit private or global
-  });
+  useEffect(() => {
+    socket.on('message', (data) => {
+      const { User_Message, username } = data;
+      // socket.emit('chat message', data)
+      // console.log('DATA---', data);
+      props.newMessage(data);
+      //TODO: import Regex conditionals
+      //TODO: emit private or global
+    });
+  }, []);
+
+  // socket.on('private message', (data) => {
+  //   const { User_Message, username } = data;
+  //   // socket.emit('chat message', data)
+  //   console.log('DATA---', data);
+  //   props.newMessage(data);
+  //   //TODO: import Regex conditionals
+  //   //TODO: emit private or global
+  // });
 
   const newMessage = (event) => {
     // if prevent default removed, page refreshes and never get dups. needs JUST COMPONENT to re-render without dups
@@ -134,17 +151,6 @@ function Chat(props) {
   };
 
 
-
-  // console.log('EVENT TEXT', {messageText});
-  // console.log('MESSAGES---', props.messageReducer.chatMessages);
-
-  let messageList = props.messageReducer.chatMessages.allMessages;
-
-  // const handleSubmit = (event) => {
-  //   console.log('HANDLESUB---', event);
-  //   setMessageText({...messageText, messageText: event.target.value})
-  // }
-
   return (
     <>
       <h1 className={classes.welcome} id="welcome">
@@ -155,9 +161,12 @@ function Chat(props) {
       <Card className={classes.root} style={{maxHeight: 500, overflow: 'auto'}}>
         <CardContent>
           <Typography className={classes.chatbox} id="chatbox" variant="body2" color="textSecondary" component="span">
-            {user && messageList ? messageList.map(message => {
+            {user && messageList ? messageList.map((message, index) => {
               return (
-                <p>{message.username}: {message.User_Message}</p>
+                <>
+                {message.privateReceiver && message.privateReceiver === user.given_name || message.username === user.given_name ? <p>{message.username}: {message.User_Message}</p> : null}
+                {!message.privateReceiver ? <p>{message.username}: {message.User_Message}</p> : null}
+                </>
               )
             })
               : null}
