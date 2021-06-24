@@ -100,9 +100,33 @@ function Chat(props) {
   });
 
   const newMessage = (event) => {
+    // if prevent default removed, page refreshes and never get dups. needs JUST COMPONENT to re-render without dups
     event.preventDefault();
-    // console.log('WORKING?', event);
-    socket.emit('message', {User_Message: messageText, username: user.given_name});
+    console.log('WORKING?', event);
+
+    console.log('messageTEXT', messageText);
+
+    let regex1 = /(\S+\w+\s+){2}/gm;
+    let regex1string = messageText.match(regex1);
+
+    let messageConstructor = messageText.split(' ');
+    console.log('messageConst', messageConstructor);
+    let messageType = messageConstructor[0];
+    console.log('messageType', messageType);
+  
+    let privateReceiver = null;
+    if (messageType === '/to') {
+      privateReceiver = regex1string[0].split(' ')[1];
+    }
+    console.log('privateReceiver', privateReceiver);
+
+    if(messageType === '/to'){
+      socket.emit('private message', { User_Message: messageText, username: user.given_name, privateReceiver, messageType })
+    } else {
+      socket.emit('message1', {User_Message: messageText, username: user.given_name});
+    }
+
+    // socket.emit('message1', {User_Message: messageText, username: user.given_name});
     event.target.reset();
     // console.log('TEXT', messageText);
     // props.newMessage(messageText);
@@ -112,7 +136,7 @@ function Chat(props) {
 
 
   // console.log('EVENT TEXT', {messageText});
-  console.log('MESSAGES---', props.messageReducer.chatMessages);
+  // console.log('MESSAGES---', props.messageReducer.chatMessages);
 
   let messageList = props.messageReducer.chatMessages.allMessages;
 
@@ -128,7 +152,7 @@ function Chat(props) {
           <p>Welcome, {user.given_name}</p> : ''
         }
       </h1>
-      <Card className={classes.root}>
+      <Card className={classes.root} style={{maxHeight: 500, overflow: 'auto'}}>
         <CardContent>
           <Typography className={classes.chatbox} id="chatbox" variant="body2" color="textSecondary" component="span">
             {user && messageList ? messageList.map(message => {
