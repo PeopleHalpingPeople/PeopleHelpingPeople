@@ -2,28 +2,22 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Login from "./login.js";
+import Button from '@material-ui/core/Button'
+import { NavLink } from 'react-router-dom';
 import Logout from "./logout.js";
 import './styles/style.css';
 
 import Menu from "./menu.js";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  bar: {
-    background: 'linear-gradient(45deg, #dddbcb 30%, #faf8f1 90%)',
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-    color: '#241909',
-    fontSize: 30,
-  },
+  // root: {
+  //   flexGrow: 1,
+  // },
+  // title: {
+  //   flexGrow: 1,
+  //   color: '#241909',
+  //   fontSize: 30,
+  // },
 }));
 export default function MenuAppBar() {
   const classes = useStyles();
@@ -41,15 +35,21 @@ export default function MenuAppBar() {
   };
   return (
     <div className={classes.root}>
-      <AppBar position="static" id="styling">
+      <AppBar position="static" id="styling" style={{ background: 'transparent', boxShadow: 'none' }}>
         <Toolbar className={classes.bar} id="styling">
         <img src="/assets/peopleLogo.svg" id='logo'></img>
-          <Menu />
-          <Typography variant="h6" className={classes.title} id='header'>
-            People Helping People
-          </Typography>
-          <Logout />
-          <Login />
+          <Button variant="contained" id="menuButton">
+            <NavLink to={{ pathname: "/" }}>Main</NavLink >
+          </Button>
+          <Button variant="contained" id="menuButton">
+            <NavLink to={{ pathname: "/howto" }}>How to</NavLink >
+          </Button>
+          <Button variant="contained" id="menuButton">
+            <NavLink to={{ pathname: "/about" }}>About Us</NavLink >
+          </Button>
+          
+          <Logout id="action"/>
+          {/* <Login id="action"/> */}
         </Toolbar>
       </AppBar>
     </div>

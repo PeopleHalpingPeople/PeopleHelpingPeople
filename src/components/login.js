@@ -8,7 +8,7 @@ function Login() {
     loginWithRedirect,
   } = useAuth0();
   return !isAuthenticated && (
-    <Button onClick={loginWithRedirect}>Log in</Button>
+    <Button variant="contained" id="menuButton" onClick={loginWithRedirect}>Log in</Button>
   );
 }
 export default Login;

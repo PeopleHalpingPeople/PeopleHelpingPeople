@@ -9,7 +9,7 @@ function About() {
       <div class="center">
         <div class="card-container">
           <div class="card">
-            <div class="side"><img src="/Assets/simone-3.jpeg" alt="Simone" class="about-us"/></div>
+            <div class="side"><img src="/Assets/simone-4.jpeg" alt="Simone" class="about-us"/></div>
               <div class="side back">
                 <div class = "lets-check">
                   <h2>About Simone</h2>
