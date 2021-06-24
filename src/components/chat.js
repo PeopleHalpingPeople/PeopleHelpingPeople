@@ -105,7 +105,8 @@ function Chat(props) {
 
   let messageList = props.messageReducer.chatMessages.allMessages;
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
+    console.log('HANDLESUB---', event);
     setMessageText({...messageText, messageText: event.target.value})
   }
 
@@ -134,7 +135,7 @@ function Chat(props) {
       {user ?
         <form className={classes.input} noValidate autoComplete="off" onSubmit={handleSubmit}>
           <TextField className={classes.inputBox} id="outlined-basic" label="type message" variant="outlined" type="text" />
-          <Button className={classes.button} id="sendbutton" variant="contained" type="submit">Send</Button>
+          <Button onClick={handleSubmit} className={classes.button} id="sendbutton" variant="contained" type="submit">Send</Button>
         </form> : null}
     </>
   )

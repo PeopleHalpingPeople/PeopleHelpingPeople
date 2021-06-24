@@ -3,7 +3,71 @@ import React from 'react';
 function About() {
   return(
     <>
-      <p>Welcome to us</p>
+      <div>
+        <h1>More About Us</h1>
+      </div>
+      <div class="center">
+        <div class="card-container">
+          <div class="card">
+            <div class="side"><img src="/Assets/simone-3.jpeg" alt="Simone" class="about-us"/></div>
+              <div class="side back">
+                <div class = "lets-check">
+                  <h2>About Simone</h2>
+                  <p>Welcome to Simone's cooking show</p>
+                </div>
+                <div class="connect">
+                  <a href="https://www.linkedin.com/in/simoneodegard/" target="_blank"><img src="Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>
+                  <a href="https://github.com/SimoneOdegard" target="_blank"><img src="/Assets/GH-round.png" alt="GitHub icon" class="authors-social"/></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="card-container">
+          <div class="card">
+            <div class="side"><img src="/Assets/jessi-1.jpg" alt="Jessi" class="about-us"/></div>
+            <div class="side back">
+              <div class = "lets-check">
+                <h2>About Jessi</h2>
+                <p>Master at geography</p>
+              </div>
+              <div class="connect">
+                <a href="https://www.linkedin.com/in/jessivelazquez/" target="_blank"><img src="/Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>
+                <a href="https://github.com/JessiVelazquez" target="_blank"><img src="/Assets/GH-round.png" alt="GitHub icon" class="authors-social"/></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <div class="side"><img src="/Assets/nicki.jpg" alt="Nicki" class="about-us"/></div>
+            <div class="side back">
+              <div class = "lets-check">
+                <h2>About Nicki</h2>
+                <p>Nicki is a full-stack Javascript developer coming from a more non-traditional background - the art/design world. After studying marketing at Portland State University, Nicki went on to become a hairstylist. Through international travel and amazing mentorship, she was exposed to the vast world of art and design, igniting a stronger passion for creativity. Nicki seeks to bring that creativity to the tech world.</p>
+              </div>
+              <div class="connect">
+                <a href="https://www.linkedin.com/in/nickibaldwin/" target="_blank"><img src="/Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>
+                <a href="https://github.com/nickibaldwin" target="_blank"><img src="/Assets/GH-round.png" alt="GitHub icon" class="authors-social"/></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <div class="side"><img src="/Assets/jason.jpg" alt="Jason" class="about-us"/></div>
+            <div class="side back">
+              <div class = "lets-check">
+                <h2>About Jason</h2>
+                <p>Hi Everyone! I am a former Project Manager turned Full-Stack JavaScript web developer. I am an avid plant enthusiast with well over forty different variates of plants. I enjoy Full-Stack web development and having the ability to work through challenging situations. </p>
+              </div>
+              <div class="connect">
+                <a href="https://www.linkedin.com/in/jason-taisey-4b229452/" target="_blank"><img src="/Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>
+                <a href="https://github.com/JTaisey389" target="_blank"><img src="/Assets/GH-round.png" alt="GitHub icon" class="authors-social"/></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   )
 }
