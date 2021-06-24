@@ -100,7 +100,7 @@ function Chat(props) {
     socket.on('message', (data) => {
       const { User_Message, username } = data;
       // socket.emit('chat message', data)
-      // console.log('DATA---', data);
+      console.log('DATA---', data);
       props.newMessage(data);
       //TODO: import Regex conditionals
       //TODO: emit private or global
@@ -165,7 +165,7 @@ function Chat(props) {
               return (
                 <>
                 {message.privateReceiver && message.privateReceiver === user.given_name || message.username === user.given_name ? <p>{message.username}: {message.User_Message}</p> : null}
-                {!message.privateReceiver ? <p>{message.username}: {message.User_Message}</p> : null}
+                {message.privateReceiver === null ? <p> {message.username}: {message.User_Message}</p> : null}
                 </>
               )
             })
