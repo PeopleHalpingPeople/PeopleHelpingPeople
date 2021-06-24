@@ -74,7 +74,7 @@ function HowTo() {
         <CardContent>
           <Typography>
               <h2>About our Application</h2>
-              <p></p>
+              <p>Our webpage is a chat application that started off life with components in the back end. The chat functionality was rendered originally with a terminal and user interactions took place within the terminal window. As the functionality grew within the page we came to a pivot point to integrate the back-end to the front-end. Slowly but surely we brought the functionality of both together and with many tribulations, we successfully married the two together.</p>
           </Typography>
         </CardContent>
       </Card>

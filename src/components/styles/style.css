@@ -2,9 +2,13 @@ html {
   background-image: radial-gradient(at top left, #7cbbbb, transparent),
   radial-gradient(at top right, #dddbcb, transparent),
   radial-gradient(at bottom left, #e9e6d7, transparent);
-  
+  /* background-color: #FAF8F1; */
+  overflow: auto;
 }
-
+body{
+  height: 900px;
+  width: auto;
+}
 #chat-window {
   background-color: aquamarine;
   height: 400px;
@@ -16,20 +20,24 @@ html {
   height: 250px;
   width: 250px;
   margin-top: -40px;
-  margin-bottom: -40px;
+  margin-bottom: -35px;
 }
 
 #header {
   font-family: 'Monoton', cursive;
+  padding-left: 50px;
 }
 
-
+#styling {
+  border-radius: 10px;
+}
 #welcome {
   font-family:'Oswald', sans-serif;
 }
 
 #chatbox {
   font-family: 'Poppins', sans-serif;
+  overflow: auto;
 }
 
 #outlined-basic {
@@ -43,7 +51,8 @@ html {
 #footer {
   font-family:'Oswald', sans-serif;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 70px;
+  /* background-color: #7cbbbb; */
 }
 
 /* ABOUT US STYLING */
@@ -61,7 +70,7 @@ h1 {
 }
 
 h2 {
-  padding: 10px;
+  padding: 3px;
   font-family: 'Poppins', sans-serif;
 }
 p {
@@ -111,6 +120,8 @@ p {
 }
 .card .back {
   transform: rotateY(180deg);
+  background-color: #F5F1E3;
+  /* color: #777974; */
 }
 .connect {
   margin-top: 140px;
