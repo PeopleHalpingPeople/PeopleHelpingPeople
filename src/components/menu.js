@@ -8,13 +8,13 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
-
+import './styles/style.css';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
   paper: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(3),
   },
 }));
 export default function MenuListComposition() {
@@ -63,9 +63,9 @@ export default function MenuListComposition() {
               <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/" }}>Main</NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/howto" }}>How To</NavLink></MenuItem>
-                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/about" }}>About Us</NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/" }}><ul>Main</ul></NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/howto" }}><ul>How To</ul></NavLink></MenuItem>
+                    <MenuItem onClick={handleClose}><NavLink to={{ pathname: "/about" }}><ul>About Us</ul></NavLink></MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

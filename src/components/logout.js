@@ -8,16 +8,9 @@ function Logout() {
     logout,
   } = useAuth0();
   return isAuthenticated && (
-    <Button variant="contained" onClick={() => {
+    <Button variant="contained" className="menuButton" id="menuButton" onClick={() => {
       logout({ returnTo: window.location.origin });
     }}>Log out</Button>
   );
 }
-// function Logout() {
-//   return (
-//     <>
-//       <Button>Logout</Button>
-//     </>
-//   )
-// }
 export default Logout;
