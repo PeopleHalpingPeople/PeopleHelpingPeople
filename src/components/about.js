@@ -13,7 +13,7 @@ function About() {
               <div class="side back">
                 <div class = "lets-check">
                   <h2>About Simone</h2>
-                  <p>Welcome to Simone's cooking show</p>
+                  <p>Hi, I’m Simone Odegard. I’m a full stack JavaScript developer and I lead competitive dance teams. I believe that if you work hard, you will be successful even if you sometimes feel incapable. I want to inspire other young women to follow their dreams and be confident in their ability to succeed in tech.</p>
                 </div>
                 <div class="connect">
                   <a href="https://www.linkedin.com/in/simoneodegard/" target="_blank"><img src="Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>
@@ -28,7 +28,7 @@ function About() {
             <div class="side back">
               <div class = "lets-check">
                 <h2>About Jessi</h2>
-                <p>Master at geography</p>
+                <p>I am a creative, go-getter person, with strong communication and leadership skills. I value things like curiosity, bravery, and discovery. My background is in environmental science, consulting, and GIS. I thrive in a faced paced environment full of opportunities, with the freedom and professional autonomy to challenge myself and follow my ambitions.</p>
               </div>
               <div class="connect">
                 <a href="https://www.linkedin.com/in/jessivelazquez/" target="_blank"><img src="/Assets/LI-round.png" alt="LinkedIn icon" class="authors-social"/></a>

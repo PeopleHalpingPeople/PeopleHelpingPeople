@@ -41,8 +41,8 @@ export default function MenuAppBar() {
   };
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar className={classes.bar}>
+      <AppBar position="static" id="styling">
+        <Toolbar className={classes.bar} id="styling">
         <img src="/assets/peopleLogo.svg" id='logo'></img>
           <Menu />
           <Typography variant="h6" className={classes.title} id='header'>

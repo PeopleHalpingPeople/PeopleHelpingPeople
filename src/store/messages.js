@@ -16,7 +16,8 @@ export default (state = initialState, action) => {
 
     case 'NEW MESSAGE':
       let input = payload
-      return {...state, input: newMessage}
+      console.log('INPUT', input);
+      return {...state, chatMessages: {...state.chatMessages, allMessages: [...state.chatMessages.allMessages, input]}}
 
     default:
       return state;
