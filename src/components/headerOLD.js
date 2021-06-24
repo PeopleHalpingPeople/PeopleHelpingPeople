@@ -43,7 +43,6 @@ export default function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.bar}>
-        <img src="/assets/peopleLogo.svg" id='logo'></img>
           <Menu />
           <Typography variant="h6" className={classes.title} id='header'>
             People Helping People

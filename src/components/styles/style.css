@@ -2,6 +2,7 @@ html {
   background-image: radial-gradient(at top left, #7cbbbb, transparent),
   radial-gradient(at top right, #dddbcb, transparent),
   radial-gradient(at bottom left, #e9e6d7, transparent);
+  
 }
 
 #chat-window {
@@ -10,6 +11,12 @@ html {
   width: 400px;
   margin: 0 auto;
   border-radius: 10px;
+}
+#logo {
+  height: 250px;
+  width: 250px;
+  margin-top: -40px;
+  margin-bottom: -40px;
 }
 
 #header {
@@ -37,4 +44,99 @@ html {
   font-family:'Oswald', sans-serif;
   text-align: center;
   margin-top: 50px;
+}
+
+/* ABOUT US STYLING */
+
+h1 {
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.about-us {
+  border-radius: 5px;
+  width: 390px;
+  height: 390px;
+  font-family: 'Poppins', sans-serif;
+}
+
+h2 {
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+p {
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+.card-container {
+  height: 390px;
+  width: 390px;
+  margin: 30px;
+  perspective: 600;
+  position: relative;
+  justify-content: center;
+  display: flex;
+}
+
+.card {
+  height: 100%;
+  position: absolute;
+  transform-style: preserve-3d;
+  transition: all 1s ease-in-out;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  border-color: #645853;
+  border-style: solid;
+  border-width: 3px;
+}
+
+.lets-check{
+  height: 200px;
+}
+
+.card:hover {
+  transform: rotateY(180deg);
+}
+.card .side {
+  backface-visibility: hidden;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+.card .back {
+  transform: rotateY(180deg);
+}
+.connect {
+  margin-top: 140px;
+  margin-left: 10px;
+}
+.authors-social{
+  height: 30px;
+  width: auto;
+  margin-top: -70px;
+}
+
+/* HOW TO PAGE */
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+}
+li{
+  font-family: 'Poppins', sans-serif;
+}
+
+.login{
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
+#howto-card {
+  overflow: auto;
+  height: 500px
 }
