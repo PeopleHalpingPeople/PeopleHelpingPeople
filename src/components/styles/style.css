@@ -23,8 +23,6 @@ body{
   margin-bottom: -35px;
 }
 
-
-
 #styling {
   border-radius: 10px;
 }
@@ -34,7 +32,7 @@ body{
 
 #chatbox {
   font-family: 'Poppins', sans-serif;
-  overflow: auto;
+  overflow: hidden !important;
 }
 
 #outlined-basic {
