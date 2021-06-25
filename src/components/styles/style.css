@@ -169,16 +169,28 @@ li{
   margin-left: 65px;
   margin-right: 95px;
   text-decoration: none;
+  color: white;
+  font-size: 18px;
 }
 
 #header {
   display: grid;
   justify-content: center;
   font-family: 'Monoton', cursive;
+  font-size: xxx-large;
 }
-#logout {
+/* #logout {
   font-family: 'Poppins', sans-serif;
-}
+  color: white;
+  font-size: 18px;
+  padding: 20px;
+} */
 #login {
   font-family: 'Poppins', sans-serif;
+}
+#action {
+  display: flex;
+  margin: 0 auto;
+  color:white;
+  font-size: x-large;
 }
