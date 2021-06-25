@@ -34,7 +34,7 @@ export default function MenuAppBar() {
     <div className={classes.root}>
       <AppBar position="static" id="styling" style={{ background: 'transparent', boxShadow: 'none' }}>
         <Toolbar className={classes.bar} id="styling">
-        <img src="/assets/peopleLogo.svg" id='logo'></img>
+        <img src="/assets/peopleLogo.png" id='logo'></img>
           <Button id="menuButton">
             <NavLink className={classes.menuButton}to ={{ pathname: "/" }}>Main</NavLink >
           </Button>
