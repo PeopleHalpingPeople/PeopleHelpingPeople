@@ -63,6 +63,7 @@ function Chat(props) {
   // const [socket, setSocket] = useState({});
   const [messageText, setMessageText] = useState('');
   let messageList = props.messageReducer.chatMessages.allMessages;
+  console.log('MESS LIST', messageList);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   // console.log(user);
@@ -107,14 +108,17 @@ function Chat(props) {
     });
   }, []);
 
-  // socket.on('private message', (data) => {
-  //   const { User_Message, username } = data;
-  //   // socket.emit('chat message', data)
-  //   console.log('DATA---', data);
-  //   props.newMessage(data);
-  //   //TODO: import Regex conditionals
-  //   //TODO: emit private or global
-  // });
+
+  useEffect(() => {
+    socket.on('private message', (data) => {
+      const { User_Message, username } = data;
+      // socket.emit('chat message', data)
+      console.log('DATA---', data);
+      props.newMessage(data);
+      //TODO: import Regex conditionals
+      //TODO: emit private or global
+    });
+  }, []);
 
   const newMessage = (event) => {
     // if prevent default removed, page refreshes and never get dups. needs JUST COMPONENT to re-render without dups
@@ -150,7 +154,7 @@ function Chat(props) {
     setMessageText('');
   };
 
-
+  
   return (
     <>
       <h1 className={classes.welcome} id="welcome">
@@ -164,8 +168,8 @@ function Chat(props) {
             {user && messageList ? messageList.map((message, index) => {
               return (
                 <>
-                {message.privateReceiver && message.privateReceiver === user.given_name || message.username === user.given_name ? <p>{message.username}: {message.User_Message}</p> : null}
-                {message.privateReceiver === null ? <p> {message.username}: {message.User_Message}</p> : null}
+                {(message.privateReceiver && message.privateReceiver === user.given_name) || (message.privateReceiver && message.username === user.given_name) ? <p>{message.username}: {message.User_Message}</p> : null}
+                {!message.privateReceiver ? <p>{message.username}: {message.User_Message}</p> : null}
                 </>
               )
             })
