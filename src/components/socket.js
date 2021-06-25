@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import socketIOClient from 'socket.io-client';
 import Chat from './chat.js';
 
-const socketIO = socketIOClient('http://localhost:3000');
+const socketIO = socketIOClient('https://people-server401.herokuapp.com/');
+// const socketIO = socketIOClient('http://localhost:3000');
 
 const SocketWrapper = (props) => {
   // const { user } = props.location.state;
