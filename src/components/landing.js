@@ -15,10 +15,10 @@ function Landing() {
   const classes = useStyles();
   return (
     <>
-      <Login id="action"/>
-      <Typography variant="h6" className={classes.title} id="header">
+      <Typography className={classes.title} id="header">
         People Helping People
       </Typography>
+      <Login/>
     </>
   );
 }

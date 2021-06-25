@@ -10,14 +10,11 @@ import './styles/style.css';
 import Menu from "./menu.js";
 
 const useStyles = makeStyles((theme) => ({
-  // root: {
-  //   flexGrow: 1,
-  // },
-  // title: {
-  //   flexGrow: 1,
-  //   color: '#241909',
-  //   fontSize: 30,
-  // },
+  menuButton: {
+    textDecoration: 'none',
+    color: 'white',
+    fontSize: '18px',
+  },
 }));
 export default function MenuAppBar() {
   const classes = useStyles();
@@ -38,14 +35,14 @@ export default function MenuAppBar() {
       <AppBar position="static" id="styling" style={{ background: 'transparent', boxShadow: 'none' }}>
         <Toolbar className={classes.bar} id="styling">
         <img src="/assets/peopleLogo.svg" id='logo'></img>
-          <Button variant="contained" id="menuButton">
-            <NavLink to={{ pathname: "/" }}>Main</NavLink >
+          <Button id="menuButton">
+            <NavLink className={classes.menuButton}to ={{ pathname: "/" }}>Main</NavLink >
           </Button>
-          <Button variant="contained" id="menuButton">
-            <NavLink to={{ pathname: "/howto" }}>How to</NavLink >
+          <Button id="menuButton">
+            <NavLink className={classes.menuButton} to={{ pathname: "/howto" }}>How to</NavLink >
           </Button>
-          <Button variant="contained" id="menuButton">
-            <NavLink to={{ pathname: "/about" }}>About Us</NavLink >
+          <Button id="menuButton">
+            <NavLink className={classes.menuButton} to={{ pathname: "/about" }}>About Us</NavLink >
           </Button>
           
           <Logout id="action"/>
