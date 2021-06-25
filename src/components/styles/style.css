@@ -3,7 +3,15 @@ html {
   radial-gradient(at top right, #dddbcb, transparent),
   radial-gradient(at bottom left, #e9e6d7, transparent);
   /* background-color: #FAF8F1; */
-  overflow: auto;
+  /* overflow: auto; */
+  overflow: scroll;
+  overflow-x: hidden;
+
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 body{
   height: 1100px;
@@ -32,7 +40,7 @@ body{
 
 #chatbox {
   font-family: 'Poppins', sans-serif;
-  overflow: hidden !important;
+  /* overflow: hidden !important; */
 }
 
 #outlined-basic {
@@ -185,10 +193,19 @@ li{
 } */
 #login {
   font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin: 0 auto;
 }
 #action {
   display: flex;
   margin: 0 auto;
   color:white;
   font-size: x-large;
+}
+#panda {
+  width: 50px;
+  height: 50px;
+  margin: -23px;
+  margin-right: 20px;
+  padding-left: 5px;
 }

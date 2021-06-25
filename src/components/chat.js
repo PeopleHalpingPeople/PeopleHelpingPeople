@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     margin: "0 auto",
     marginTop: 20,
-    maxWidth: 800,
+    maxWidth: 1000,
     maxHeight: 500,
     background: "transparent",
   },
@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
   chatbox: {
     padding: 10,
+    overflow: 'auto',
   },
   input: {
     textAlign: "center",
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'right',
     width: '500px',
     margin: '20px',
-    marginLeft: '250px',
+    marginLeft: '450px',
     backgroundColor:"#777974",
     color: '#FFF',
     borderRadius: '50px',
@@ -179,7 +180,7 @@ function Chat(props) {
       </h1>
       <Card
         className={classes.root}
-        style={{ maxHeight: 500, background: 'transparent', boxShadow: 'none'}}
+        style={{ maxHeight: 500, background: 'transparent', boxShadow: 'none', overflow: 'auto' }}
       >
         <CardContent>
           <Typography
@@ -204,8 +205,9 @@ function Chat(props) {
                               // color="textSecondary"
                               component="p"
                             >
-                              {/* <img src={ Panda }/> */}
+                              <img id="panda" src="/Assets/panda.png"/>
                               {message.username}: {message.User_Message}
+                              {/* <p>{ new Date(timestamp) }</p> */}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -218,6 +220,7 @@ function Chat(props) {
                               // color="textSecondary"
                               component="p"
                             >
+                              <img id="panda" src="/Assets/panda.png"/>
                               {message.username}: {message.User_Message}
                             </Typography>
                           </CardContent>

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 800,
     maxHeight: 400,
     background: "#faf8f1",
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: "#645853",
     borderStyle: "solid",
   },
@@ -19,30 +19,6 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
     padding: 10,
   },
-  // welcome: {
-  //   textAlign: "center",
-  //   marginTop: 20,
-  // },
-  // input: {
-  //   textAlign: "center",
-  //   "& > *": {
-  //     margin: theme.spacing(1),
-  //   },
-  // },
-  // inputBox: {
-  //   width: 680,
-  //   background: "#faf8f1",
-  //   borderWidth: 1,
-  //   borderColor: "#645853",
-  //   borderStyle: "solid",
-  // },
-  // button: {
-  //   width: 100,
-  //   paddingTop: 15,
-  //   paddingBottom: 15,
-  //   background: "#44392e",
-  //   color: "#faf8f1",
-  // },
 }));
 function HowTo() {
   const classes = useStyles();
@@ -56,7 +32,7 @@ function HowTo() {
               <p id="steps">
                 Step 2: There are two ways to sign in with our application:
               </p>
-              <img src="/Assets/loginscreen.jpg" id="login" />
+              <center><img src="/Assets/loginscreen.jpg" id="login" /></center>
               <ul>
                 <li>
                   The first is to create an account by clicking the "sign up"
