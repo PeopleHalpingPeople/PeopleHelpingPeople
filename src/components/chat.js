@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./styles/style.css";
-const HOST = "http://localhost:3000";
-const { Socket } = require("socket.io-client");
-import io from "socket.io-client";
 import { useAuth0 } from "@auth0/auth0-react";
 import { filteredMessages, newMessage } from "../store/messages.js";
 import { connect } from "react-redux";
-import { reduxForm, Field } from "redux-form";
-import SocketWrapper from "./socket";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -72,18 +67,13 @@ const useStyles = makeStyles((theme) => ({
 function Chat(props) {
   const classes = useStyles();
 
-  // const [socket, setSocket] = useState({});
   const [messageText, setMessageText] = useState("");
   let messageList = props.messageReducer.chatMessages.allMessages;
-  console.log("MESS LIST", messageList);
 
   const { user, isAuthenticated, isLoading } = useAuth0();
-  // console.log(user);
+
   const { socket } = props;
-  // useEffect(() => {
-  //   setSocket(io(HOST));
-  // }, []);
-  // let socket = io.connect(HOST);
+
   useEffect(() => {
     return () => {
       socket.disconnect();
@@ -92,11 +82,6 @@ function Chat(props) {
 
   useEffect(() => {
     if (user) {
-      //TODO - logic to only print once. messageList is array
-      // console.log('messageList', {messageList});
-      // let list = [];
-      // list = Object.values(messageList);
-      // console.log('LIST', list);
       socket.emit("add user", user.given_name);
     }
   }, [user]);
@@ -112,45 +97,29 @@ function Chat(props) {
   useEffect(() => {
     socket.on("message", (data) => {
       const { User_Message, username } = data;
-      // socket.emit('chat message', data)
-      console.log("DATA---", data);
       props.newMessage(data);
-      //TODO: import Regex conditionals
-      //TODO: emit private or global
     });
   }, []);
 
   useEffect(() => {
     socket.on("private message", (data) => {
       const { User_Message, username } = data;
-      // socket.emit('chat message', data)
-      console.log("DATA---", data);
       props.newMessage(data);
-      //TODO: import Regex conditionals
-      //TODO: emit private or global
     });
   }, []);
 
   const newMessage = (event) => {
-    // if prevent default removed, page refreshes and never get dups. needs JUST COMPONENT to re-render without dups
     event.preventDefault();
-    console.log("WORKING?", event);
-
-    console.log("messageTEXT", messageText);
 
     let regex1 = /(\S+\w+\s+){2}/gm;
     let regex1string = messageText.match(regex1);
-
     let messageConstructor = messageText.split(" ");
-    console.log("messageConst", messageConstructor);
     let messageType = messageConstructor[0];
-    console.log("messageType", messageType);
-
     let privateReceiver = null;
+
     if (messageType === "/to") {
       privateReceiver = regex1string[0].split(" ")[1];
     }
-    console.log("privateReceiver", privateReceiver);
 
     if (messageType === "/to") {
       socket.emit("private message", {
@@ -165,11 +134,7 @@ function Chat(props) {
         username: user.given_name,
       });
     }
-
-    // socket.emit('message1', {User_Message: messageText, username: user.given_name});
     event.target.reset();
-    // console.log('TEXT', messageText);
-    // props.newMessage(messageText);
     setMessageText("");
   };
 
@@ -202,12 +167,10 @@ function Chat(props) {
                           <CardContent>
                             <Typography
                               variant="body2"
-                              // color="textSecondary"
                               component="p"
                             >
                               <img id="panda" src="/Assets/panda.png"/>
                               {message.username}: {message.User_Message}
-                              {/* <p>{ new Date(timestamp) }</p> */}
                             </Typography>
                           </CardContent>
                         </Card>
@@ -217,7 +180,6 @@ function Chat(props) {
                           <CardContent>
                             <Typography
                               variant="body2"
-                              // color="textSecondary"
                               component="p"
                             >
                               <img id="panda" src="/Assets/panda.png"/>
@@ -227,10 +189,6 @@ function Chat(props) {
                         </Card>
                       ) : null}
                     </>
-                    // <>
-                    // {(message.privateReceiver && message.privateReceiver === user.given_name) || (message.privateReceiver && message.username === user.given_name) ? <p>{message.username}: {message.User_Message}</p> : null}
-                    // {!message.privateReceiver ? <p>{message.username}: {message.User_Message}</p> : null}
-                    // </>
                   );
                 })
               : null}

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Header from "./components/header.js";
-// import Chat from "./components/chat.js";
 import Howto from "./components/howto.js";
 import About from './components/about.js';
 import Footer from "./components/footer";
@@ -24,9 +23,6 @@ function App (props) {
             <Landing />
             <SocketWrapper />
           </Route>
-          {/* <Route exact path="/main">
-            
-          </Route> */}
           <Route exact path="/howto">
             <Howto />
           </Route>
