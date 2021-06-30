@@ -7,8 +7,6 @@ import { NavLink } from 'react-router-dom';
 import Logout from "./logout.js";
 import './styles/style.css';
 
-import Menu from "./menu.js";
-
 const useStyles = makeStyles((theme) => ({
   menuButton: {
     textDecoration: 'none',
@@ -44,9 +42,7 @@ export default function MenuAppBar() {
           <Button id="menuButton">
             <NavLink className={classes.menuButton} to={{ pathname: "/about" }}>About Us</NavLink >
           </Button>
-          
           <Logout id="action"/>
-          {/* <Login id="action"/> */}
         </Toolbar>
       </AppBar>
     </div>
